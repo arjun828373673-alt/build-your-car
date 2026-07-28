@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta  name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta  charset="UTF-8">
+        <title>build dream car</title>
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+        <style>
+        :root {      
+          --gold: #d4af37;
+          --gold-light: #f39c12;
+          --bg-dark:#0a0a0c;
+          --card-bg:rgba(20, 20, 25, 0.85);
+          --border-gold:rgba(212, 175, 55, 0.3);
+        }
+      
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'montserrat', sans-serif;
+        }
+
+        body{
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header{
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .logo {
+            font-family: 'cinzel', serif;
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 40px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 8px 18px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: none;
+        }
+        
+        .back-btn:hover{
+            background: var(--gold);
+            color: #000;
+        }    
+
+        .view{
+            display: none;
+            min-height: 100vh;
+            width: 100%;
+            padding-top: 80px;
+        }
+
+        .view.active {
+            display: flex;
+        }
+
+        #hero-view{
+            position: relative;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1s ease-in-out;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-title {   
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            font-family: 'cinzel', serif;
+            font-size: 3.8rem;
+            color:var(--gold);
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .hero-subtitle {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            color: #cccccc;
+            text-transform: uppercase;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 14px 32px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background: var(--gold);
+            color: #000;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        .btn-secondary:hover{
+            border-color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #model-view {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, #181820 0%, #0a0a0c 80%);
+        }
+
+        .section-heading {
+            font-family: 'cinzel', serif;
+            font-size: 1.6rem;
+            letter-spacing: 3px;
+            color: #ffffff;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+        }
+
+        .model-card {
+            border: 1px solid var(--border-gold);
+            border-radius: 8px;
+            background: var(--card-bg);
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .model-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.25);
+        }
+
+         .model-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            margin-bottom: 20px;
+         }
+
+         .model-name {
+            font-family: 'cinzel', serif;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .model-price {
+            color: var(--gold);
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        #config-view {
+            display: flex;
+            grid-template-columns: 1fr 380px;
+            height: calc(100vh - 80px);
+        }
+
+        .car-stage {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, #22222d 0%, #0a0a0c 75%);
+            padding: 40px;
+            position: relative;
+        }
+
+        .car-stage img {
+            max-width: 90%;
+            max-height: 450px;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.9));
+            transition: all 0.5s ease;
+        }
+
+        .sidebar {
+            background: #111116;
+            border-left: 1px solid var(--border-gold);
+            padding: 30px 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            overflow-y: auto;
+        }
+
+        .option-title {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .option-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .swatch-btn {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            padding: 10px 5px;
+            color: #ffffff;
+            font-size: 0.7rem;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .swatch-btn:hover {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold);
+        }
+
+        .color-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin: 0 auto 6px auto;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .price-summary {
+            margin-top: auto;
+            padding-top: 20px;
+            display: flex;
+            border-top: 1px solid var(--border-gold);
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .total-price {
+            font-family: 'cinzel', serif;
+            font-size: 1.6rem;
+            color: #ffffff;
+        }
+
+        .purchase-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--gold);
+            border: none;
+            color: #000;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .purchase-btn:hover {
+            background: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.85);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+        }
+
+        .modal-box {
+          background: var(--card-bg);
+          border: 1px solid var(--border-gold);
+          padding: 40px;
+          border-radius: 12px;
+          text-align: center;
+           max-width: 400px;
+        }
+
+
+        .modal-box h2 {
+            font-family: 'cinzel', serif;
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .modal-box p {
+            font-size: 0.85rem;
+            color: #aaaaaa;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        </style>
+    </head>
+      <body>
+        <header>
+            <button class="back-btn" id="back-btn" onclick="goBack()">Back</button>
+            <div class="logo">BUILD YOUR DREAM</div>
+        </header>
+        <div id="hero-view" class="view active">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">Build your dream car</h1>
+                <p class="hero-subtitle">luxery, performance, and speed</p>
+                <div class="btn-group">
+                    <button class="btn-primary" onclick="showView('model-view')">Build your dream</button>
+                    <button class="btn-secondary" onclick="showView('model-view')">Explore models</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="model-view" class="view">
+            <h2 class="section-heading">Select your model type</h2>
+            <div class="model-grid">
+                <div class="model-card" onclick="selectModel('sedan', 60000, 'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80')"
+                >
+                <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80" alt="sedan">
+                <div class="model-name">Sedan</div>
+                <div class="model-price">$60000</div>
+                </div>
+
+               <div class="model-card" onclick="selectModel('coupe', 85000, 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80')">
+                <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80" alt="coupe">
+                <div class="model-name">coupe</div>
+                <div class="model-price">$85000</div>
+               </div>
+
+               <div class="model-card" onclick="selectModel('supercar', 180000, 'https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=800&q=80')">
+                <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=800&q=80" alt="supercar">
+                <div class="model-name">Super car</div>
+                <div class="model-price">180000</div>
+               </div>
+             </div>
+        </div>
+
+    <div id="config-view" class="view">
+            <div class="car-stage">
+                <img id="carPreview" src="" alt="Car Customizer">
+            </div>
+
+        <div class="sidebar">
+                <div class="option-title">Paint</div>
+                <div class="option-row">
+                    <div class="swatch-btn active" onclick="setPaint(0, this)">
+                        <div class="color-dot" style="background:#000;"></div>
+                        Black
+                    </div>
+                    <div class="swatch-btn" onclick="setPaint(2000, this)">
+                        <div class="color-dot" style="background: #fff;"></div>
+                        white (+$2K)
+                    </div>
+                    <div class="swatch-btn" onclick="setPaint(3500, this)">
+                        <div class="color-dot" style="background:#cc0000;"></div>
+                        Red
+                    </div>
+                    <div class="swatch-btn" onclick="setPaint(3500, this)">
+                    <div class="color-dot" style="background:blue;"></div>
+                    Blue
+                    </div>
+                </div>
+
+         <div>
+            <div class="option-title">Wheels</div>
+            <div class="option-row">
+              <div class="swatch-btn active" onclick="setWheel(0, this)">Stock</div>
+              <div class="swatch-btn" onclick="setWheel(2500, this)">Sports (+$2.5k)</div>
+              <div class="swatch-btn" onclick="setWheel(5000, this)">Racing (+$5k)</div>
+            </div>
+         </div>
+         
+         <div class="price-summary">
+            <div style="font-size: 0.8rem; color:#888;"> Total price</div>
+            <div class="total-price" id="totalPrice">$0</div>
+         </div>
+
+         <button class="purchase-btn" onclick="openModel()">PURCHASE NOW</button>
+        </div>
+    </div>
+
+    <div class="model-overlay" id="purchaseModel">
+        <div class="model-box">
+            <h2>Thank you for your purchase!</h2>
+            <p>you will recive a confirmation and folow-up soon! As its a fake purchase</p>\
+            <button class="purchase-btn" style="margin-top:0;" onclick="resetToHome()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        const heroImage = [
+            'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1600&q=80',
+            'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1600&q=80',
+            'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1600&q=80'
+        ];
+        let heroIndex = 0;
+        const heroView = document.getElementById('hero-view');
+
+        function cycleHeroBackground() {
+            heroView.style.backgroundImage = `url('${heroImage[heroIndex]}')`;          
+            heroIndex = (heroIndex + 1) % heroImage.length;
+        }
+
+        cycleHeroBackground();
+            setInterval(cycleHeroBackground, 4000);
+        
+            let currentBasePrice = 0;
+            let currentPaintPrice = 0;
+            let currentWheelPrice = 0;
+
+            function showView(viewId) {
+              document.querySelectorAll('.view').forEach(v =>{
+                v.classList.remove('active');
+                v.style.display = 'none';
+              });
+
+              const activeView = document.getElementById(viewId);
+              activeView.classList.add('active');
+              activeView.style.display = (viewId === 'config-view') ? 'grid' : 'flex';
+
+              document.getElementById('back-btn').style.display = (viewId === 'hero-view') ? 'none' : 'block';
+            }
+             
+            function goBack() {
+                const configView = document.getElementById('config-view');
+                if (configView.classList.contains('active')) {
+                    showView('model-view');
+                } else {
+                    showView('hero-view');
+                }
+            }
+
+            function selectModel (modelName, basePrice, imgUrl){
+                currentBasePrice = basePrice;
+                currentPaintPrice = 0;
+                currentWheelPrice = 0;
+                document.getElementById('carPreview').src = imgUrl;
+                updatePrice();
+                showView('config-view');
+            }
+
+            function setPaint(price, el) {
+                currentPaintPrice = price;
+                el.parentElement.querySelectorAll('.swatch-btn').forEach(btn => btn.classList.remove('active'));
+                el.classList.add('active');
+                updatePrice();
+            }
+
+            function setWheel(price, el) {
+                currentWheelPrice = price;
+                el.parentElement.querySelectorAll('.swatch-btn').forEach(btn => btn.classList.remove('active'));
+                el.classList.add('active');
+                updatePrice();
+            }
+
+            function updatePrice() {
+                const total = currentBasePrice + currentPaintPrice + currentWheelPrice;
+                document.getElementById('totalPrice').innerText = '$' + total.toLocaleString();
+            }
+
+            function openModel() {
+                document.getElementById('purchaseModel').style.display = 'flex';
+            }
+
+            function resetToHome() {
+                document.getElementById('purchaseModel').style.display = 'none';
+                showView('hero-view');
+            }
+
+    </script>
+  </body>
+</html>
