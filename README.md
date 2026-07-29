@@ -7,7 +7,9 @@ And I'am also a car lover so I make this website
 
 ## features 
 multiple car choice: you can choose sedan, sports,  and racing car
-multiple paint choice: you can choose multiple 
+multiple paint choice: you can choose multiple color red, blue 
+multiple wheel choice: you can choose many types of wheel like normal , sports, and supercar wheel
+
 
 which language I used to make this website
 HTML, CSS, J.S
