@@ -378,7 +378,7 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
+        
         <section id="hero-view" class="view">
             <div class="hero-overlay"></div>
             <div class="hero-content">
@@ -391,7 +391,7 @@
             </div>
         </section>
         
-        <!-- Model Selection Section -->
+        
         <section id="model-view" class="view hidden">
             <h2 class="section-heading">Select Your Model Type</h2>
             <div class="model-grid">
@@ -415,7 +415,7 @@
             </div>
         </section>
 
-        <!-- Configurator Section -->
+        
         <section id="config-view" class="view hidden">
             <div class="car-stage">
                 <img id="carPreview" src="" alt="Car Customizer Preview">
@@ -463,7 +463,7 @@
         </section>
     </main>
 
-    <!-- Purchase Confirmation Modal -->
+    
     <div class="modal-overlay hidden" id="purchaseModal">
         <div class="modal-box">
             <h2>Thank You For Your Order!</h2>
@@ -473,7 +473,7 @@
     </div>
 
     <script>
-        // Hero Background Carousel
+        
         const heroImages = [
             'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1600&q=80',
             'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1600&q=80',
@@ -498,7 +498,7 @@
             wheelPrice: 0
         };
 
-        // DOM Elements
+    
         const views = {
             hero: document.getElementById('hero-view'),
             model: document.getElementById('model-view'),
@@ -509,7 +509,7 @@
         const purchaseModal = document.getElementById('purchaseModal');
         const carPreview = document.getElementById('carPreview');
 
-        // Navigation Helper
+        
         function showView(targetViewKey) {
             Object.keys(views).forEach(key => {
                 if (key === targetViewKey) {
@@ -522,13 +522,13 @@
             backBtn.classList.toggle('hidden', targetViewKey === 'hero');
         }
 
-        // Price Update Logic
+        
         function updateTotalPrice() {
             const total = configState.basePrice + configState.paintPrice + configState.wheelPrice;
             totalPriceEl.textContent = `$${total.toLocaleString()}`;
         }
 
-        // Event Listeners
+        
         document.getElementById('startBuildBtn').addEventListener('click', () => showView('model'));
         document.getElementById('exploreBtn').addEventListener('click', () => showView('model'));
 
@@ -540,7 +540,7 @@
             }
         });
 
-        // Model Selection Handler
+        
         document.querySelectorAll('.model-card').forEach(card => {
             card.addEventListener('click', () => {
                 configState.basePrice = parseInt(card.dataset.price, 10);
@@ -549,7 +549,7 @@
 
                 carPreview.src = card.dataset.img;
 
-                // Reset option swatches visual state
+                
                 document.querySelectorAll('.swatch-btn').forEach(btn => btn.classList.remove('active'));
                 document.querySelectorAll('#paintOptions .swatch-btn')[0].classList.add('active');
                 document.querySelectorAll('#wheelOptions .swatch-btn')[0].classList.add('active');
@@ -559,7 +559,6 @@
             });
         });
 
-        // Option Selectors (Paint & Wheels)
         function setupSwatchGroup(containerId, stateKey) {
             const container = document.getElementById(containerId);
             container.querySelectorAll('.swatch-btn').forEach(btn => {
@@ -575,7 +574,7 @@
         setupSwatchGroup('paintOptions', 'paintPrice');
         setupSwatchGroup('wheelOptions', 'wheelPrice');
 
-        // Checkout Modal Handler
+
         document.getElementById('checkoutBtn').addEventListener('click', () => {
             purchaseModal.classList.remove('hidden');
         });
