@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta  name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta  charset="UTF-8">
-        <title>build dream car</title>
-        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-        <style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Your Dream Car</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
         :root {      
-          --gold: #d4af37;
-          --gold-light: #f39c12;
-          --bg-dark:#0a0a0c;
-          --card-bg:rgba(20, 20, 25, 0.85);
-          --border-gold:rgba(212, 175, 55, 0.3);
+            --gold: #d4af37;
+            --gold-light: #f39c12;
+            --bg-dark: #0a0a0c;
+            --card-bg: rgba(20, 20, 25, 0.85);
+            --border-gold: rgba(212, 175, 55, 0.3);
         }
-      
-        *{
+
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'montserrat', sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        body{
+        body {
             background-color: var(--bg-dark);
             color: #ffffff;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        header{
+        header {
             position: fixed;
             top: 0;
             width: 100%;
@@ -42,7 +42,7 @@
         }
 
         .logo {
-            font-family: 'cinzel', serif;
+            font-family: 'Cinzel', serif;
             font-size: 1.8rem;
             letter-spacing: 4px;
             color: var(--gold);
@@ -60,27 +60,26 @@
             letter-spacing: 2px;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: none;
         }
         
-        .back-btn:hover{
+        .back-btn:hover {
             background: var(--gold);
             color: #000;
         }    
 
-        .view{
-            display: none;
+        .hidden {
+            display: none !important;
+        }
+
+        .view {
             min-height: 100vh;
             width: 100%;
             padding-top: 80px;
         }
 
-        .view.active {
-            display: flex;
-        }
-
-        #hero-view{
+        #hero-view {
             position: relative;
+            display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
@@ -92,7 +91,7 @@
 
         .hero-overlay {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            inset: 0;
             background: rgba(0, 0, 0, 0.55);
             z-index: 1;
         }
@@ -106,9 +105,9 @@
 
         .hero-title {   
             text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-            font-family: 'cinzel', serif;
+            font-family: 'Cinzel', serif;
             font-size: 3.8rem;
-            color:var(--gold);
+            color: var(--gold);
             letter-spacing: 3px;
             margin-bottom: 10px;
         }
@@ -155,25 +154,35 @@
             color: #ffffff;
         }
 
-        .btn-secondary:hover{
+        .btn-secondary:hover {
             border-color: #ffffff;
             background: rgba(255, 255, 255, 0.1);
         }
 
         #model-view {
+            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            padding: 100px 20px 40px;
             background: radial-gradient(circle at center, #181820 0%, #0a0a0c 80%);
         }
 
         .section-heading {
-            font-family: 'cinzel', serif;
+            font-family: 'Cinzel', serif;
             font-size: 1.6rem;
             letter-spacing: 3px;
             color: #ffffff;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             text-transform: uppercase;
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1000px;
         }
 
         .model-card {
@@ -187,20 +196,20 @@
         }
 
         .model-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
             border-color: var(--gold);
             box-shadow: 0 10px 30px rgba(212, 175, 55, 0.25);
         }
 
-         .model-card img {
+        .model-card img {
             width: 100%;
             height: 180px;
             object-fit: contain;
             margin-bottom: 20px;
-         }
+        }
 
-         .model-name {
-            font-family: 'cinzel', serif;
+        .model-name {
+            font-family: 'Cinzel', serif;
             font-size: 1.2rem;
             letter-spacing: 2px;
             color: #ffffff;
@@ -214,9 +223,16 @@
         }
 
         #config-view {
-            display: flex;
+            display: grid;
             grid-template-columns: 1fr 380px;
             height: calc(100vh - 80px);
+        }
+
+        @media (max-width: 850px) {
+            #config-view {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
         }
 
         .car-stage {
@@ -225,7 +241,6 @@
             align-items: center;
             background: radial-gradient(circle at center, #22222d 0%, #0a0a0c 75%);
             padding: 40px;
-            position: relative;
         }
 
         .car-stage img {
@@ -261,7 +276,7 @@
         }
 
         .swatch-btn {
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 6px;
             padding: 10px 5px;
@@ -272,6 +287,7 @@
             transition: all 0.3s ease;
         }
 
+        .swatch-btn.active,
         .swatch-btn:hover {
             border-color: var(--gold);
             background: rgba(212, 175, 55, 0.15);
@@ -296,7 +312,7 @@
         }
 
         .total-price {
-            font-family: 'cinzel', serif;
+            font-family: 'Cinzel', serif;
             font-size: 1.6rem;
             color: #ffffff;
         }
@@ -322,27 +338,26 @@
 
         .modal-overlay {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            inset: 0;
             background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(8px);
-            display: none;
+            display: flex;
             justify-content: center;
             align-items: center;
             z-index: 200;
         }
 
         .modal-box {
-          background: var(--card-bg);
-          border: 1px solid var(--border-gold);
-          padding: 40px;
-          border-radius: 12px;
-          text-align: center;
-           max-width: 400px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-gold);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 400px;
         }
 
-
         .modal-box h2 {
-            font-family: 'cinzel', serif;
+            font-family: 'Cinzel', serif;
             color: var(--gold);
             font-size: 1.8rem;
             margin-bottom: 15px;
@@ -354,182 +369,221 @@
             line-height: 1.6;
             margin-bottom: 25px;
         }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="back-btn hidden" id="backBtn">Back</button>
+        <div class="logo">Build Your Dream</div>
+    </header>
 
-        </style>
-    </head>
-      <body>
-        <header>
-            <button class="back-btn" id="back-btn" onclick="goBack()">Back</button>
-            <div class="logo">BUILD YOUR DREAM</div>
-        </header>
-        <div id="hero-view" class="view active">
+    <main>
+        <!-- Hero Section -->
+        <section id="hero-view" class="view">
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1 class="hero-title">Build your dream car</h1>
-                <p class="hero-subtitle">luxery, performance, and speed</p>
+                <h1 class="hero-title">Build Your Dream Car</h1>
+                <p class="hero-subtitle">Luxury, performance, and speed</p>
                 <div class="btn-group">
-                    <button class="btn-primary" onclick="showView('model-view')">Build your dream</button>
-                    <button class="btn-secondary" onclick="showView('model-view')">Explore models</button>
+                    <button class="btn-primary" id="startBuildBtn">Build Your Dream</button>
+                    <button class="btn-secondary" id="exploreBtn">Explore Models</button>
                 </div>
             </div>
-        </div>
+        </section>
         
-        <div id="model-view" class="view">
-            <h2 class="section-heading">Select your model type</h2>
+        <!-- Model Selection Section -->
+        <section id="model-view" class="view hidden">
+            <h2 class="section-heading">Select Your Model Type</h2>
             <div class="model-grid">
-                <div class="model-card" onclick="selectModel('sedan', 60000, 'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80')"
-                >
-                <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80" alt="sedan">
-                <div class="model-name">Sedan</div>
-                <div class="model-price">$60000</div>
+                <div class="model-card" data-model="Sedan" data-price="60000" data-img="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80" alt="Sedan">
+                    <div class="model-name">Sedan</div>
+                    <div class="model-price">$60,000</div>
                 </div>
 
-               <div class="model-card" onclick="selectModel('coupe', 85000, 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80')">
-                <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80" alt="coupe">
-                <div class="model-name">coupe</div>
-                <div class="model-price">$85000</div>
-               </div>
+                <div class="model-card" data-model="Coupe" data-price="85000" data-img="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80" alt="Coupe">
+                    <div class="model-name">Coupe</div>
+                    <div class="model-price">$85,000</div>
+                </div>
 
-               <div class="model-card" onclick="selectModel('supercar', 180000, 'https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=800&q=80')">
-                <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=800&q=80" alt="supercar">
-                <div class="model-name">Super car</div>
-                <div class="model-price">180000</div>
-               </div>
-             </div>
-        </div>
+                <div class="model-card" data-model="Supercar" data-price="180000" data-img="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=800&q=80" alt="Supercar">
+                    <div class="model-name">Supercar</div>
+                    <div class="model-price">$180,000</div>
+                </div>
+            </div>
+        </section>
 
-    <div id="config-view" class="view">
+        <!-- Configurator Section -->
+        <section id="config-view" class="view hidden">
             <div class="car-stage">
-                <img id="carPreview" src="" alt="Car Customizer">
+                <img id="carPreview" src="" alt="Car Customizer Preview">
             </div>
 
-        <div class="sidebar">
-                <div class="option-title">Paint</div>
-                <div class="option-row">
-                    <div class="swatch-btn active" onclick="setPaint(0, this)">
-                        <div class="color-dot" style="background:#000;"></div>
-                        Black
-                    </div>
-                    <div class="swatch-btn" onclick="setPaint(2000, this)">
-                        <div class="color-dot" style="background: #fff;"></div>
-                        white (+$2K)
-                    </div>
-                    <div class="swatch-btn" onclick="setPaint(3500, this)">
-                        <div class="color-dot" style="background:#cc0000;"></div>
-                        Red
-                    </div>
-                    <div class="swatch-btn" onclick="setPaint(3500, this)">
-                    <div class="color-dot" style="background:blue;"></div>
-                    Blue
+            <aside class="sidebar">
+                <div>
+                    <div class="option-title">Paint</div>
+                    <div class="option-row" id="paintOptions">
+                        <button class="swatch-btn active" data-price="0">
+                            <div class="color-dot" style="background:#000;"></div>
+                            Black
+                        </button>
+                        <button class="swatch-btn" data-price="2000">
+                            <div class="color-dot" style="background: #fff;"></div>
+                            White (+$2k)
+                        </button>
+                        <button class="swatch-btn" data-price="3500">
+                            <div class="color-dot" style="background:#cc0000;"></div>
+                            Red (+$3.5k)
+                        </button>
+                        <button class="swatch-btn" data-price="3500">
+                            <div class="color-dot" style="background:#0044cc;"></div>
+                            Blue (+$3.5k)
+                        </button>
                     </div>
                 </div>
 
-         <div>
-            <div class="option-title">Wheels</div>
-            <div class="option-row">
-              <div class="swatch-btn active" onclick="setWheel(0, this)">Stock</div>
-              <div class="swatch-btn" onclick="setWheel(2500, this)">Sports (+$2.5k)</div>
-              <div class="swatch-btn" onclick="setWheel(5000, this)">Racing (+$5k)</div>
-            </div>
-         </div>
-         
-         <div class="price-summary">
-            <div style="font-size: 0.8rem; color:#888;"> Total price</div>
-            <div class="total-price" id="totalPrice">$0</div>
-         </div>
+                <div>
+                    <div class="option-title">Wheels</div>
+                    <div class="option-row" id="wheelOptions">
+                        <button class="swatch-btn active" data-price="0">Stock</button>
+                        <button class="swatch-btn" data-price="2500">Sports (+$2.5k)</button>
+                        <button class="swatch-btn" data-price="5000">Racing (+$5k)</button>
+                    </div>
+                </div>
 
-         <button class="purchase-btn" onclick="openModel()">PURCHASE NOW</button>
-        </div>
-    </div>
+                <div class="price-summary">
+                    <div style="font-size: 0.8rem; color:#888;">Total Price</div>
+                    <div class="total-price" id="totalPrice">$0</div>
+                </div>
 
-    <div class="model-overlay" id="purchaseModel">
-        <div class="model-box">
-            <h2>Thank you for your purchase!</h2>
-            <p>you will recive a confirmation and folow-up soon! As its a fake purchase</p>\
-            <button class="purchase-btn" style="margin-top:0;" onclick="resetToHome()">Close</button>
+                <button class="purchase-btn" id="checkoutBtn">Purchase Now</button>
+            </aside>
+        </section>
+    </main>
+
+    <!-- Purchase Confirmation Modal -->
+    <div class="modal-overlay hidden" id="purchaseModal">
+        <div class="modal-box">
+            <h2>Thank You For Your Order!</h2>
+            <p>Your vehicle configuration has been logged. A representative will reach out shortly with next steps.</p>
+            <button class="purchase-btn" id="closeModalBtn">Close</button>
         </div>
     </div>
 
     <script>
-        const heroImage = [
+        // Hero Background Carousel
+        const heroImages = [
             'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1600&q=80',
-            'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1600&q=80',
-            'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1600&q=80'
+            'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1600&q=80',
+            'https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=1600&q=80'
         ];
+        
         let heroIndex = 0;
         const heroView = document.getElementById('hero-view');
 
-        function cycleHeroBackground() {
-            heroView.style.backgroundImage = `url('${heroImage[heroIndex]}')`;          
-            heroIndex = (heroIndex + 1) % heroImage.length;
+        function rotateHeroBackground() {
+            heroView.style.backgroundImage = `url('${heroImages[heroIndex]}')`;
+            heroIndex = (heroIndex + 1) % heroImages.length;
+        }
+        
+        rotateHeroBackground();
+        setInterval(rotateHeroBackground, 4000);
+
+        // App State
+        const configState = {
+            basePrice: 0,
+            paintPrice: 0,
+            wheelPrice: 0
+        };
+
+        // DOM Elements
+        const views = {
+            hero: document.getElementById('hero-view'),
+            model: document.getElementById('model-view'),
+            config: document.getElementById('config-view')
+        };
+        const backBtn = document.getElementById('backBtn');
+        const totalPriceEl = document.getElementById('totalPrice');
+        const purchaseModal = document.getElementById('purchaseModal');
+        const carPreview = document.getElementById('carPreview');
+
+        // Navigation Helper
+        function showView(targetViewKey) {
+            Object.keys(views).forEach(key => {
+                if (key === targetViewKey) {
+                    views[key].classList.remove('hidden');
+                } else {
+                    views[key].classList.add('hidden');
+                }
+            });
+
+            backBtn.classList.toggle('hidden', targetViewKey === 'hero');
         }
 
-        cycleHeroBackground();
-            setInterval(cycleHeroBackground, 4000);
-        
-            let currentBasePrice = 0;
-            let currentPaintPrice = 0;
-            let currentWheelPrice = 0;
+        // Price Update Logic
+        function updateTotalPrice() {
+            const total = configState.basePrice + configState.paintPrice + configState.wheelPrice;
+            totalPriceEl.textContent = `$${total.toLocaleString()}`;
+        }
 
-            function showView(viewId) {
-              document.querySelectorAll('.view').forEach(v =>{
-                v.classList.remove('active');
-                v.style.display = 'none';
-              });
+        // Event Listeners
+        document.getElementById('startBuildBtn').addEventListener('click', () => showView('model'));
+        document.getElementById('exploreBtn').addEventListener('click', () => showView('model'));
 
-              const activeView = document.getElementById(viewId);
-              activeView.classList.add('active');
-              activeView.style.display = (viewId === 'config-view') ? 'grid' : 'flex';
-
-              document.getElementById('back-btn').style.display = (viewId === 'hero-view') ? 'none' : 'block';
+        backBtn.addEventListener('click', () => {
+            if (!views.config.classList.contains('hidden')) {
+                showView('model');
+            } else {
+                showView('hero');
             }
-             
-            function goBack() {
-                const configView = document.getElementById('config-view');
-                if (configView.classList.contains('active')) {
-                    showView('model-view');
-                } else {
-                    showView('hero-view');
-                }
-            }
+        });
 
-            function selectModel (modelName, basePrice, imgUrl){
-                currentBasePrice = basePrice;
-                currentPaintPrice = 0;
-                currentWheelPrice = 0;
-                document.getElementById('carPreview').src = imgUrl;
-                updatePrice();
-                showView('config-view');
-            }
+        // Model Selection Handler
+        document.querySelectorAll('.model-card').forEach(card => {
+            card.addEventListener('click', () => {
+                configState.basePrice = parseInt(card.dataset.price, 10);
+                configState.paintPrice = 0;
+                configState.wheelPrice = 0;
 
-            function setPaint(price, el) {
-                currentPaintPrice = price;
-                el.parentElement.querySelectorAll('.swatch-btn').forEach(btn => btn.classList.remove('active'));
-                el.classList.add('active');
-                updatePrice();
-            }
+                carPreview.src = card.dataset.img;
 
-            function setWheel(price, el) {
-                currentWheelPrice = price;
-                el.parentElement.querySelectorAll('.swatch-btn').forEach(btn => btn.classList.remove('active'));
-                el.classList.add('active');
-                updatePrice();
-            }
+                // Reset option swatches visual state
+                document.querySelectorAll('.swatch-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('#paintOptions .swatch-btn')[0].classList.add('active');
+                document.querySelectorAll('#wheelOptions .swatch-btn')[0].classList.add('active');
 
-            function updatePrice() {
-                const total = currentBasePrice + currentPaintPrice + currentWheelPrice;
-                document.getElementById('totalPrice').innerText = '$' + total.toLocaleString();
-            }
+                updateTotalPrice();
+                showView('config');
+            });
+        });
 
-            function openModel() {
-                document.getElementById('purchaseModel').style.display = 'flex';
-            }
+        // Option Selectors (Paint & Wheels)
+        function setupSwatchGroup(containerId, stateKey) {
+            const container = document.getElementById(containerId);
+            container.querySelectorAll('.swatch-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    container.querySelectorAll('.swatch-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    configState[stateKey] = parseInt(btn.dataset.price, 10);
+                    updateTotalPrice();
+                });
+            });
+        }
 
-            function resetToHome() {
-                document.getElementById('purchaseModel').style.display = 'none';
-                showView('hero-view');
-            }
+        setupSwatchGroup('paintOptions', 'paintPrice');
+        setupSwatchGroup('wheelOptions', 'wheelPrice');
 
+        // Checkout Modal Handler
+        document.getElementById('checkoutBtn').addEventListener('click', () => {
+            purchaseModal.classList.remove('hidden');
+        });
+
+        document.getElementById('closeModalBtn').addEventListener('click', () => {
+            purchaseModal.classList.add('hidden');
+            showView('hero');
+        });
     </script>
-  </body>
+</body>
 </html>
